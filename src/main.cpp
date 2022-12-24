@@ -1,4 +1,9 @@
 #include "types.hpp"
+
+#ifdef UNIT_TEST
+#include "uTest.cpp"
+#else
+
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -13,3 +18,5 @@ int main(int argc, char *argv[])
     std::cout << "Template" << std::endl;
     return 0;
 }
+
+#endif
