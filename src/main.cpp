@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
         entityManager->deltaTime = GetFrameTime();
 
         // test logic
-        entityManager->stepAllBlocks();
+        entityManager->stepAllBucketBlocks();
         entityManager->removeExpiredBlocks();
         //
 

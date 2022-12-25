@@ -75,7 +75,7 @@ void EntityManager::stepBlock(Block *block)
     block->print();
 }
 
-void EntityManager::stepAllBlocks()
+void EntityManager::stepAllBucketBlocks()
 {
     for(int i = 0; i < blocks->size(); i++)
     {

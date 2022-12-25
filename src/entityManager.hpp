@@ -15,7 +15,7 @@ class EntityManager
     void removeExpiredBlocks();
     void addBlock(Block block);
     void stepBlock(Block *block);
-    void stepAllBlocks();
+    void stepAllBucketBlocks();
     EntityManager();
     ~EntityManager();
 };
