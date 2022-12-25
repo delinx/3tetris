@@ -8,8 +8,13 @@
 class EntityManager
 {
       public:
-    std::vector<Block> blocks;
+    std::vector<Block> *blocks = new std::vector<Block>();
+    f96 time = 0.0f;
+    f96 deltaTime = 0.0f;
 
+    void removeExpiredBlocks();
+    void addBlock(Block block);
+    void stepBlocks();
     EntityManager();
     ~EntityManager();
 };

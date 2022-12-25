@@ -19,8 +19,25 @@ int main(int argc, char *argv[])
 
     EntityManager *entityManager = new EntityManager();
 
+    f96 time = 0.0f;
+
+    Block block = Block(iXY(1, 1), fXY(0.0f, 0.0f));
+    block.positionVisualTarget = fXY(100.0f, 100.0f);
+    entityManager->addBlock(block);
+
+
     while(!WindowShouldClose())
     {
+        time += GetFrameTime();
+        entityManager->time = time;
+        entityManager->deltaTime = GetFrameTime();
+
+        // test logic
+        entityManager->stepBlocks();
+        entityManager->removeExpiredBlocks();
+        //
+
+
         BeginDrawing();
         ClearBackground(BLACK);
         DrawFPS(10, 10);
