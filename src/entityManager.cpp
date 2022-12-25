@@ -28,52 +28,57 @@ void EntityManager::addBlock(Block block)
     blocks->push_back(block);
 }
 
-void EntityManager::stepBlocks()
+void EntityManager::stepBlock(Block *block)
+{
+    // check if block needs to be deleted after certain time has passed
+    if(block->deleteAfterTimestamp > 0.0f)
+    {
+        if(time > block->deleteAfterTimestamp)
+        {
+            block->scheduledForDeletion = true;
+        }
+    }
+    // check if block needs to be deleted after animation has finished
+    if(block->deleteAfterAnimating)
+    {
+        if(block->animationTimestampCurrent >= block->animationTimestampEnd)
+        {
+            block->scheduledForDeletion = true;
+        }
+    }
+    // check if block needs to be animated
+    if(block->playingAnimation)
+    {
+        block->animationTimestampCurrent += block->animationSpeed * deltaTime;
+        if(block->animationTimestampCurrent > 100.f)
+        {
+            block->animationTimestampCurrent = 100.f;
+        }
+    }
+    // check if block needs to be moved in X or Y
+    if(block->positionVisualCurrent.x != block->positionVisualTarget.x)
+    {
+        block->positionVisualCurrent.x += block->movementSpeed * deltaTime;
+        if(block->positionVisualCurrent.x > block->positionVisualTarget.x)
+        {
+            block->positionVisualCurrent.x = block->positionVisualTarget.x;
+        }
+    }
+    if(block->positionVisualCurrent.y != block->positionVisualTarget.y)
+    {
+        block->positionVisualCurrent.y += block->movementSpeed * deltaTime;
+        if(block->positionVisualCurrent.y > block->positionVisualTarget.y)
+        {
+            block->positionVisualCurrent.y = block->positionVisualTarget.y;
+        }
+    }
+    block->print();
+}
+
+void EntityManager::stepAllBlocks()
 {
     for(int i = 0; i < blocks->size(); i++)
     {
-        // check if block needs to be deleted after certain time has passed
-        if(blocks->at(i).deleteAfterTimestamp > 0.0f)
-        {
-            if(time > blocks->at(i).deleteAfterTimestamp)
-            {
-                blocks->at(i).scheduledForDeletion = true;
-            }
-        }
-        // check if block needs to be deleted after animation has finished
-        if(blocks->at(i).deleteAfterAnimating)
-        {
-            if(blocks->at(i).animationTimestampCurrent >= blocks->at(i).animationTimestampEnd)
-            {
-                blocks->at(i).scheduledForDeletion = true;
-            }
-        }
-        // check if block needs to be animated
-        if(blocks->at(i).playingAnimation)
-        {
-            blocks->at(i).animationTimestampCurrent += blocks->at(i).animationSpeed * deltaTime;
-            if(blocks->at(i).animationTimestampCurrent > 100.f)
-            {
-                blocks->at(i).animationTimestampCurrent = 100.f;
-            }
-        }
-        // check if block needs to be moved in X or Y
-        if(blocks->at(i).positionVisualCurrent.x != blocks->at(i).positionVisualTarget.x)
-        {
-            blocks->at(i).positionVisualCurrent.x += blocks->at(i).movementSpeed * deltaTime;
-            if(blocks->at(i).positionVisualCurrent.x > blocks->at(i).positionVisualTarget.x)
-            {
-                blocks->at(i).positionVisualCurrent.x = blocks->at(i).positionVisualTarget.x;
-            }
-        }
-        if(blocks->at(i).positionVisualCurrent.y != blocks->at(i).positionVisualTarget.y)
-        {
-            blocks->at(i).positionVisualCurrent.y += blocks->at(i).movementSpeed * deltaTime;
-            if(blocks->at(i).positionVisualCurrent.y > blocks->at(i).positionVisualTarget.y)
-            {
-                blocks->at(i).positionVisualCurrent.y = blocks->at(i).positionVisualTarget.y;
-            }
-        }
-        blocks->at(i).print();
+        stepBlock(&blocks->at(i));
     }
 }

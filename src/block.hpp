@@ -14,7 +14,7 @@ class Block
     iXY positionBucket;
     fXY positionVisualCurrent;
     fXY positionVisualTarget;
-    f32 movementSpeed = 4.0f;
+    f32 movementSpeed = 100.0f;
 
     bool scheduledForDeletion = false;
     f32 deleteAfterTimestamp = 0.0f;
@@ -30,7 +30,6 @@ class Block
 
     Block();
     Block(iXY bucketPos, fXY visualPos);
-    Block(iXY bucketPos, fXY visualPosCurrent, fXY visualPosTarget);
     ~Block();
 };
 
