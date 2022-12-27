@@ -2,6 +2,7 @@
 #define ACTIVE_SHAPE_HPP
 
 #include "types/grid.hpp"
+#include "types/shape.hpp"
 
 class ActiveShape
 {

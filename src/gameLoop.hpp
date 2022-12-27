@@ -1,6 +1,8 @@
 #ifndef GAME_LOOP_HPP
 #define GAME_LOOP_HPP
+#include "activeShape.hpp"
 #include "blockRender.hpp"
+#include "bucket.hpp"
 #include "types/grid.hpp"
 #include "types/shape.hpp"
 #include "types/types.hpp"
@@ -15,6 +17,8 @@ class GameLoop
 
     BlockRender *bucketRender = NULL;
     BlockRender *shapeRender = NULL;
+
+    Bucket *bucket = NULL;
 
     GameLoop();
     ~GameLoop();

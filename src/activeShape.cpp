@@ -1,5 +1,13 @@
 #include "activeShape.hpp"
 
+ActiveShape::ActiveShape()
+{
+}
+
+ActiveShape::~ActiveShape()
+{
+    delete grid;
+}
 
 bool ActiveShape::canFit(iXY xy, Grid &shape, Grid &bucket)
 {

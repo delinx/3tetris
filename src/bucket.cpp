@@ -7,4 +7,5 @@ Bucket::Bucket()
 
 Bucket::~Bucket()
 {
+    delete grid;
 }
