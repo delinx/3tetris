@@ -11,6 +11,7 @@ class ActiveShape
 
     bool canFit(iXY xy, Grid &shape, Grid &bucket);
 
+    static Shape shapeTemplate;
     ActiveShape();
     ~ActiveShape();
 };
