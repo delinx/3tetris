@@ -1,4 +1,5 @@
 #include "blockRender.hpp"
+#include "gameLoop.hpp"
 #include "raylib.h"
 #include "types/types.hpp"
 
@@ -17,23 +18,21 @@ int main(int argc, char *argv[])
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
     SetTargetFPS(120);
 
-    BlockRender *bucketBlockRender = new BlockRender();
-
     f96 time = 0.0f;
 
-
+    GameLoop gameLoop;
 
     while(!WindowShouldClose())
     {
         time += GetFrameTime();
-        bucketBlockRender->time = time;
-        bucketBlockRender->deltaTime = GetFrameTime();
+        gameLoop.time = time;
+        gameLoop.deltaTime = GetFrameTime();
 
 
         BeginDrawing();
         ClearBackground(BLACK);
         DrawFPS(10, 10);
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        DrawText("3Tetris", 190, 200, 20, LIGHTGRAY);
         EndDrawing();
     }
 

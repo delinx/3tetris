@@ -15,7 +15,7 @@ project(
   LANGUAGES CXX)
 
 add_executable(${PROJECT_NAME} src/main.cpp src/types/block.cpp src/blockRender.cpp src/bucket.cpp src/types/grid.cpp
-    src/gameLoop.cpp)
+    src/gameLoop.cpp src/types/shape.cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_INCLUDE})
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
