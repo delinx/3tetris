@@ -18,6 +18,7 @@ class GameLoop
     BlockRender *bucketRender = NULL;
     BlockRender *shapeRender = NULL;
 
+    static Shape shapeTemplate;
     Bucket *bucket = NULL;
 
     GameLoop();

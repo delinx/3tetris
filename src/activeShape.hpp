@@ -7,7 +7,7 @@
 class ActiveShape
 {
     Grid *grid = NULL;
-    iXY bucketPosition = iXY(5, -4);
+    iXY bucketPosition = iXY(3, -4);
 
     bool canFit(iXY xy, Grid &shape, Grid &bucket);
 
