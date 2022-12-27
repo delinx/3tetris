@@ -1,5 +1,5 @@
-#ifndef BUCKET_MANAGER_HPP
-#define BUCKET_MANAGER_HPP
+#ifndef BUCKET_HPP
+#define BUCKET_HPP
 #include "types/grid.hpp"
 #include "types/types.hpp"
 
@@ -20,4 +20,4 @@ class Bucket
     // void moveRowsDown(u32 row);
 };
 
-#endif  // !BUCKET_MANAGER_HPP
+#endif  // !BUCKET_HPP

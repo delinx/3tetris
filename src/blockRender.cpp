@@ -1,15 +1,15 @@
-#include "entityManager.hpp"
+#include "blockRender.hpp"
 #include <string>
 
-EntityManager::EntityManager()
+BlockRender::BlockRender()
 {
 }
 
-EntityManager::~EntityManager()
+BlockRender::~BlockRender()
 {
 }
 
-void EntityManager::removeExpiredBlocks()
+void BlockRender::removeExpiredBlocks()
 {
     std::vector<Block> *NewBlocks = new std::vector<Block>();
     for(int i = 0; i < blocks->size(); i++)
@@ -23,12 +23,12 @@ void EntityManager::removeExpiredBlocks()
     blocks = NewBlocks;
 }
 
-void EntityManager::addBlock(Block block)
+void BlockRender::addBlock(Block block)
 {
     blocks->push_back(block);
 }
 
-void EntityManager::stepBlock(Block *block)
+void BlockRender::stepBlock(Block *block)
 {
     // check if block needs to be deleted after certain time has passed
     if(block->deleteAfterTimestamp > 0.0f)
@@ -75,7 +75,7 @@ void EntityManager::stepBlock(Block *block)
     block->print();
 }
 
-void EntityManager::stepAllBucketBlocks()
+void BlockRender::stepAllBucketBlocks()
 {
     for(int i = 0; i < blocks->size(); i++)
     {

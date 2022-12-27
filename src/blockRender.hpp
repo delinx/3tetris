@@ -1,11 +1,11 @@
-#ifndef ENTITY_MANAGER_HPP
-#define ENTITY_MANAGER_HPP
+#ifndef BLOCK_RENDER_HPP
+#define BLOCK_RENDER_HPP
 #include "raylib.h"
 #include "types/block.hpp"
 #include <iostream>
 #include <vector>
 
-class EntityManager
+class BlockRender
 {
       public:
     std::vector<Block> *blocks = new std::vector<Block>();
@@ -16,8 +16,8 @@ class EntityManager
     void addBlock(Block block);
     void stepBlock(Block *block);
     void stepAllBucketBlocks();
-    EntityManager();
-    ~EntityManager();
+    BlockRender();
+    ~BlockRender();
 };
 
-#endif  // !ENTITY_MANAGER_HPP
+#endif  // !BLOCK_RENDER_HPP

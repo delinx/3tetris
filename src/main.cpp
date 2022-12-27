@@ -1,4 +1,4 @@
-#include "entityManager.hpp"
+#include "blockRender.hpp"
 #include "raylib.h"
 #include "types/types.hpp"
 
@@ -17,25 +17,17 @@ int main(int argc, char *argv[])
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
     SetTargetFPS(120);
 
-    EntityManager *entityManager = new EntityManager();
+    BlockRender *bucketBlockRender = new BlockRender();
 
     f96 time = 0.0f;
 
-    Block block = Block(iXY(1, 1), fXY(0.0f, 0.0f));
-    block.positionVisualTarget = fXY(100.0f, 100.0f);
-    entityManager->addBlock(block);
 
 
     while(!WindowShouldClose())
     {
         time += GetFrameTime();
-        entityManager->time = time;
-        entityManager->deltaTime = GetFrameTime();
-
-        // test logic
-        entityManager->stepAllBucketBlocks();
-        entityManager->removeExpiredBlocks();
-        //
+        bucketBlockRender->time = time;
+        bucketBlockRender->deltaTime = GetFrameTime();
 
 
         BeginDrawing();
