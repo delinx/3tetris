@@ -1,5 +1,5 @@
-#ifndef TETRIS_LOGIC_HPP
-#define TETRIS_LOGIC_HPP
+#ifndef BUCKET_MANAGER_HPP
+#define BUCKET_MANAGER_HPP
 #include "types/grid.hpp"
 #include "types/types.hpp"
 
@@ -20,4 +20,4 @@ class Bucket
     // void moveRowsDown(u32 row);
 };
 
-#endif  // !TETRIS_LOGIC_HPP
+#endif  // !BUCKET_MANAGER_HPP
