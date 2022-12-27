@@ -1,7 +1,7 @@
 #ifndef ENTITY_MANAGER_HPP
 #define ENTITY_MANAGER_HPP
-#include "block.hpp"
 #include "raylib.h"
+#include "types/block.hpp"
 #include <iostream>
 #include <vector>
 

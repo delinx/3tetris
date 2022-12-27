@@ -1,6 +1,6 @@
 #include "entityManager.hpp"
 #include "raylib.h"
-#include "types.hpp"
+#include "types/types.hpp"
 
 #ifdef UNIT_TEST
 #include "uTest.cpp"
