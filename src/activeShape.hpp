@@ -6,12 +6,14 @@
 
 class ActiveShape
 {
+      public:
     Grid *grid = NULL;
-    iXY bucketPosition = iXY(3, -4);
+    iXY bucketPosition = iXY(0, 0);
 
     bool canFit(iXY xy, Grid &shape, Grid &bucket);
 
-    static Shape shapeTemplate;
+    Shape shapeTemplate = Shape();
+    void getRandomShape();
     ActiveShape();
     ~ActiveShape();
 };

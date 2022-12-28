@@ -4,6 +4,7 @@
 #include "xy.hpp"
 #include <iostream>
 #include <random>
+#include <raylib.h>
 
 class Block
 {
@@ -25,6 +26,8 @@ class Block
     const f32 animationTimestampEnd = 100.0f;
 
     f32 animationSpeed = 1.0f;
+
+    Color BaseColor = GREEN;
 
     void print();
 

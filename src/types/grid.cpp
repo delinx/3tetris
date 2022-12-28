@@ -26,6 +26,19 @@ i32 Grid::get(iXY xy)
     return grid[xy.x + WIDTH * xy.y];
 }
 
+void Grid::print()
+{
+    for(usize y = 0; y < HEIGHT; y++)
+    {
+        for(usize x = 0; x < WIDTH; x++)
+        {
+            std::cout << get(iXY(x, y)) << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+}
+
 
 Grid* Grid::rotate(bool clockwise)
 {

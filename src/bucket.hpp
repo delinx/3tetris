@@ -1,5 +1,6 @@
 #ifndef BUCKET_HPP
 #define BUCKET_HPP
+#include "activeShape.hpp"
 #include "types/grid.hpp"
 #include "types/types.hpp"
 
@@ -9,10 +10,13 @@
 // logicalTick
 class Bucket
 {
+      public:
     Bucket();
     ~Bucket();
     const u32 WIDTH = 10;
     const u32 HEIGHT = 20;
+
+    void bakeShape(ActiveShape &shape);
 
     Grid *grid = NULL;
     // bool findSolvedRows();

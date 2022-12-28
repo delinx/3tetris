@@ -22,6 +22,9 @@ class Grid
 
     Grid* rotate(bool clockwise);
     Grid* copy();
+
+    /// print grid to console
+    void print();
 };
 
 
