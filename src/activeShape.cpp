@@ -44,28 +44,30 @@ void ActiveShape::getRandomShape()
     }
 }
 
-bool ActiveShape::canFit(iXY xy, Grid &shape, Grid &bucket)
+bool ActiveShape::canFit(iXY xy, Grid &bucket)
 {
-    if(shape.grid == NULL || bucket.grid == NULL)
+    if(grid == NULL || bucket.grid == NULL)
     {
         return false;
     }
-    for(i32 x = 0; x < shape.WIDTH; x++)
+    for(i32 x = 0; x < grid->WIDTH; x++)
     {
-        for(i32 y = 0; y < shape.HEIGHT; y++)
+        for(i32 y = 0; y < grid->HEIGHT; y++)
         {
             // if activeBlock cell is empty skip
-            if(shape.get(iXY(x, y)) == 0)
+            if(grid->get(iXY(x, y)) == 0)
             {
                 continue;
             }
             // if activeBlock is outside grid return false
             if(xy.x + x < 0 || xy.x + x >= bucket.WIDTH || xy.y + y < -4 || xy.y + y >= bucket.HEIGHT)
             {
+                std::cout << "out of bounds" << std::endl;
                 return false;
             }
             if(bucket.get(iXY(xy.x + x, xy.y + y)) != 0)
             {
+                std::cout << "collision" << std::endl;
                 return false;
             }
         }

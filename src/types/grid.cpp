@@ -39,7 +39,6 @@ void Grid::print()
     std::cout << std::endl;
 }
 
-
 Grid* Grid::rotate(bool clockwise)
 {
     Grid* newGrid = new Grid(HEIGHT, WIDTH);

@@ -24,6 +24,7 @@ class GameLoop
     bool moveLeft = false;
     bool moveRight = false;
     bool moveDown = false;
+    bool moveRequsted = false;
 
     BlockRender *bucketRender = NULL;
     BlockRender *shapeRender = NULL;
@@ -34,8 +35,11 @@ class GameLoop
     void readInput();
     void resetInput();
     void tickLogic();
+    void updateTime();
 
     void drawControls();
+
+    void updateActiveShape();
 
     GameLoop();
     ~GameLoop();

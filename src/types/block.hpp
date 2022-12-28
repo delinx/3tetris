@@ -17,6 +17,8 @@ class Block
     fXY positionVisualTarget;
     f32 movementSpeed = 100.0f;
 
+    i32 size = 10;
+
     bool scheduledForDeletion = false;
     f32 deleteAfterTimestamp = 0.0f;
 

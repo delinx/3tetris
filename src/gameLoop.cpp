@@ -6,6 +6,19 @@ GameLoop::GameLoop()
     shapeRender = new BlockRender();
     bucket = new Bucket();
     activeShape = new ActiveShape();
+
+    bucketRender->time = time;
+    shapeRender->time = time;
+    bucketRender->deltaTime = deltaTime;
+    shapeRender->deltaTime = deltaTime;
+}
+
+void GameLoop::updateTime()
+{
+    bucketRender->time = time;
+    shapeRender->time = time;
+    bucketRender->deltaTime = deltaTime;
+    shapeRender->deltaTime = deltaTime;
 }
 
 GameLoop::~GameLoop()
@@ -17,11 +30,13 @@ GameLoop::~GameLoop()
 
 void GameLoop::readInput()
 {
-    moveRight = IsKeyDown(KEY_RIGHT) ? true : false;
-    moveLeft = IsKeyDown(KEY_LEFT) ? true : false;
+    moveRight = IsKeyPressed(KEY_RIGHT) ? true : false;
+    moveLeft = IsKeyPressed(KEY_LEFT) ? true : false;
     moveDown = IsKeyDown(KEY_SPACE) ? true : false;
-    rotateRight = IsKeyDown(KEY_UP) ? true : false;
-    rotateLeft = IsKeyDown(KEY_DOWN) ? true : false;
+    rotateRight = IsKeyPressed(KEY_UP) ? true : false;
+    rotateLeft = IsKeyPressed(KEY_DOWN) ? true : false;
+
+    moveRequsted = moveRight || moveLeft || rotateRight || rotateLeft;
 }
 
 void GameLoop::resetInput()
@@ -31,17 +46,54 @@ void GameLoop::resetInput()
     moveLeft = false;
     moveRight = false;
     moveDown = false;
+    moveRequsted = false;
 }
 
 void GameLoop::tickLogic()
 {
     f96 interval = moveDown ? tickIntervalFast : tickInterval;
-    if(time - lastTick > interval)
+
+    bool skipWaiting = false;
+    // check if shape can fit, if it can then we skip waiting for the tick
+    if(moveRequsted)
+    {
+        iXY requestedPosition = activeShape->bucketPosition;
+        if(moveRight)
+        {
+            requestedPosition.x++;
+        }
+        if(moveLeft)
+        {
+            requestedPosition.x--;
+        }
+        if(rotateRight)
+        {
+            // activeShape->rotateRight();
+        }
+        if(rotateLeft)
+        {
+            // activeShape->rotateLeft();
+        }
+
+        if(activeShape->canFit(requestedPosition, *bucket->grid))
+        {
+            std::cout << "can fit" << std::endl;
+            skipWaiting = true;
+            activeShape->bucketPosition = requestedPosition;
+            shapeRender->addOffsetToVisualTarget(fXY(requestedPosition.x * 10.f, requestedPosition.y * 10.f));
+        }
+    }
+
+    if(time - lastTick > interval || skipWaiting)
     {
         std::cout << "tick" << std::endl;
         lastTick = time;
         resetInput();
     }
+}
+
+void GameLoop::updateActiveShape()
+{
 }
 
 void GameLoop::drawControls()

@@ -24,11 +24,14 @@ int main(int argc, char *argv[])
 
     bool DEBUG = true;
 
+    gameLoop.shapeRender->addBlocksFromGrid(gameLoop.activeShape->grid);
+
     while(!WindowShouldClose())
     {
         time += GetFrameTime();
         gameLoop.time = time;
         gameLoop.deltaTime = GetFrameTime();
+        gameLoop.updateTime();
 
         BeginDrawing();
         ClearBackground(GRAY);
@@ -37,11 +40,12 @@ int main(int argc, char *argv[])
 
         gameLoop.readInput();
         gameLoop.tickLogic();
+        gameLoop.shapeRender->stepAllBucketBlocks();
+        gameLoop.shapeRender->drawAllBucketBlocksDebug();
 
 
         // gameLoop.activeShape->grid->print();
         // gameLoop.bucket->grid->print();
-        gameLoop.bucket->bakeShape(*gameLoop.activeShape);
 
         if(DEBUG)
         {

@@ -8,9 +8,9 @@ class ActiveShape
 {
       public:
     Grid *grid = NULL;
-    iXY bucketPosition = iXY(0, 0);
+    iXY bucketPosition = iXY(4, 1);
 
-    bool canFit(iXY xy, Grid &shape, Grid &bucket);
+    bool canFit(iXY xy, Grid &bucket);
 
     Shape shapeTemplate = Shape();
     void getRandomShape();
