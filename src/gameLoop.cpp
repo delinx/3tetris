@@ -17,26 +17,11 @@ GameLoop::~GameLoop()
 
 void GameLoop::readInput()
 {
-    if(IsKeyPressed(KEY_RIGHT))
-    {
-        moveRight = true;
-    }
-    if(IsKeyPressed(KEY_LEFT))
-    {
-        moveLeft = true;
-    }
-    if(IsKeyPressed(KEY_SPACE))
-    {
-        moveDown = true;
-    }
-    if(IsKeyPressed(KEY_UP))
-    {
-        rotateRight = true;
-    }
-    if(IsKeyPressed(KEY_DOWN))
-    {
-        rotateLeft = true;
-    }
+    moveRight = IsKeyDown(KEY_RIGHT) ? true : false;
+    moveLeft = IsKeyDown(KEY_LEFT) ? true : false;
+    moveDown = IsKeyDown(KEY_SPACE) ? true : false;
+    rotateRight = IsKeyDown(KEY_UP) ? true : false;
+    rotateLeft = IsKeyDown(KEY_DOWN) ? true : false;
 }
 
 void GameLoop::resetInput()
@@ -48,6 +33,16 @@ void GameLoop::resetInput()
     moveDown = false;
 }
 
+void GameLoop::tickLogic()
+{
+    f96 interval = moveDown ? tickIntervalFast : tickInterval;
+    if(time - lastTick > interval)
+    {
+        std::cout << "tick" << std::endl;
+        lastTick = time;
+        resetInput();
+    }
+}
 
 void GameLoop::drawControls()
 {

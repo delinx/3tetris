@@ -15,6 +15,9 @@ class GameLoop
       public:
     f96 time = 0.0f;
     f96 deltaTime = 0.0f;
+    f96 lastTick = 0.0f;
+    f96 tickInterval = 0.4f;
+    f96 tickIntervalFast = 0.1f;
 
     bool rotateRight = false;
     bool rotateLeft = false;
@@ -30,6 +33,7 @@ class GameLoop
 
     void readInput();
     void resetInput();
+    void tickLogic();
 
     void drawControls();
 

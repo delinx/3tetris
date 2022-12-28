@@ -26,10 +26,6 @@ int main(int argc, char *argv[])
 
     while(!WindowShouldClose())
     {
-        gameLoop.readInput();
-
-
-
         time += GetFrameTime();
         gameLoop.time = time;
         gameLoop.deltaTime = GetFrameTime();
@@ -39,8 +35,12 @@ int main(int argc, char *argv[])
         DrawFPS(10, 10);
         DrawText("3Tetris", 190, 200, 20, LIGHTGRAY);
 
-        gameLoop.activeShape->grid->print();
-        gameLoop.bucket->grid->print();
+        gameLoop.readInput();
+        gameLoop.tickLogic();
+
+
+        // gameLoop.activeShape->grid->print();
+        // gameLoop.bucket->grid->print();
         gameLoop.bucket->bakeShape(*gameLoop.activeShape);
 
         if(DEBUG)
